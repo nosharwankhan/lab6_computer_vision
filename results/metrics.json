@@ -1,0 +1,166 @@
+{
+  "test_default": {
+    "macro_f1": 0.8618454262865645,
+    "accuracy": 0.8798076923076923,
+    "confusion_matrix": [
+      [
+        162,
+        72
+      ],
+      [
+        3,
+        387
+      ]
+    ],
+    "per_class": {
+      "NORMAL": {
+        "precision": 0.9818181818181818,
+        "recall": 0.6923076923076923,
+        "f1-score": 0.8120300751879699
+      },
+      "PNEUMONIA": {
+        "precision": 0.8431372549019608,
+        "recall": 0.9923076923076923,
+        "f1-score": 0.911660777385159
+      }
+    }
+  },
+  "calibrated": {
+    "threshold": 0.8331834077835083,
+    "target_recall": 0.95,
+    "sensitivity": 0.982051282051282,
+    "specificity": 0.8205128205128205,
+    "ppv_test_prevalence": 0.9011764705882352,
+    "ppv_at_5pct_prevalence": 0.22358435493286627,
+    "test_prevalence": 0.625,
+    "auc_test": 0.9761176857330703,
+    "auc_val": 0.9953145731977002,
+    "tp": 383,
+    "fn": 7,
+    "tn": 192,
+    "fp": 42,
+    "macro_f1": 0.9133566641635614,
+    "accuracy": 0.9214743589743589,
+    "confusion_matrix": [
+      [
+        192,
+        42
+      ],
+      [
+        7,
+        383
+      ]
+    ],
+    "per_class": {
+      "NORMAL": {
+        "precision": 0.964824120603015,
+        "recall": 0.8205128205128205,
+        "f1-score": 0.8868360277136259
+      },
+      "PNEUMONIA": {
+        "precision": 0.9011764705882352,
+        "recall": 0.982051282051282,
+        "f1-score": 0.939877300613497
+      }
+    }
+  },
+  "environment": {
+    "device": "cpu",
+    "torch": "2.14.1+cpu",
+    "python": "3.12.3"
+  },
+  "config": {
+    "backbone": "resnet18",
+    "img_size": 224,
+    "grayscale": true,
+    "target_recall": 0.95,
+    "positive_class": "PNEUMONIA",
+    "seed": 42
+  },
+  "dataset": {
+    "train_images": 5216,
+    "train_groups": 2846,
+    "official_test_images": 624,
+    "classes": [
+      "NORMAL",
+      "PNEUMONIA"
+    ],
+    "train_counts": {
+      "NORMAL": 1341,
+      "PNEUMONIA": 3875
+    },
+    "image_sample": {
+      "n": 300,
+      "median_width": 1300,
+      "median_height": 890,
+      "width_range": [
+        384,
+        2510
+      ],
+      "height_range": [
+        127,
+        2543
+      ],
+      "modes": {
+        "L": 286,
+        "RGB": 14
+      }
+    }
+  },
+  "split": {
+    "train_images": 4346,
+    "val_images": 870,
+    "test_images": 624,
+    "train_val_shared_groups": 0,
+    "official_test_shared_groups_train_subset": 144,
+    "official_test_shared_groups_val_subset": 26
+  },
+  "duplicates": {
+    "exact_duplicate_files": 62,
+    "exact_duplicate_groups": 30,
+    "exact_cross_split_groups": 0,
+    "exact_within_train_groups": 24,
+    "exact_within_test_groups": 6,
+    "near_duplicate_test_images": 0,
+    "min_test_train_distance": 0.16435213387012482
+  },
+  "group_overlap": {
+    "official_test_shared_groups": 170,
+    "official_test_shared_images": 320
+  },
+  "class_weights": {
+    "NORMAL": 1.945389435989257,
+    "PNEUMONIA": 0.672963765871787
+  },
+  "training_history": {
+    "Phase 1": [
+      {
+        "epoch": 1,
+        "val_macro_f1": 0.8074800951388614,
+        "seconds": 390.8
+      },
+      {
+        "epoch": 2,
+        "val_macro_f1": 0.9067136293629492,
+        "seconds": 389.8
+      }
+    ],
+    "Phase 2": [
+      {
+        "epoch": 1,
+        "val_macro_f1": 0.9515749525616699,
+        "seconds": 458.9
+      },
+      {
+        "epoch": 2,
+        "val_macro_f1": 0.9684814692776271,
+        "seconds": 460.9
+      },
+      {
+        "epoch": 3,
+        "val_macro_f1": 0.9615828804347826,
+        "seconds": 464.1
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+# Core environment used by the notebook (CPU or CUDA build of PyTorch is fine)
+torch>=2.0
+torchvision>=0.15
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.2
+matplotlib>=3.7
+Pillow>=10.0
+
+# Notebook execution / rendering
+jupyter
+nbconvert
