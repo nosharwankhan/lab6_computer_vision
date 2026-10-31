@@ -266,3 +266,33 @@ Dataset: Paul Mooney, *Chest X-Ray Images (Pneumonia)*, Kaggle, CC BY 4.0.
 ---
 
 > **Not medical advice.** This repository is an academic exercise. The model is not a medical device and must not be used for clinical diagnosis or treatment.
+
+
+## Week 7: Text and Multimodal AI
+- Text classifier: SMS Spam Collection, 5,572 texts, macro-F1 0.974 (word) vs 0.982 (char)
+- Top positive / negative features: call, txt, free, text, reply / my, me, ok, that, it
+- NER on my domain: out-of-the-box F1 0.276 -> with entity ruler 0.6 (held-out sentences);
+  provided set 0.533 -> 0.875
+- Regex fields extracted: CNIC, mobile, amount, date, email, invoice no., MRN, temperature, SpO2;
+  false positives tested: 4 domain negatives + 2 provided (CNIC lookalike, "Room 0300")
+- OCR: CER raw 0.040 -> after correction rules 0.040 (test pairs: 0.062 / 0.059 / 0.143 -> 0.000)
+- Pipeline: image model + text evidence -> JSON record (example below)
+- Privacy: CNIC, phone, and email masked before logging
+- Note: Week 7 uses the Week 6 model retrained on Kaggle GPU (same seed and settings)
+
+```json
+{
+  "image": "person100_bacteria_475.jpeg",
+  "image_probabilities": {"NORMAL": 0.007, "PNEUMONIA": 0.993},
+  "note_masked": "Child aged 3, cough for 4 days with fast breathing and fever. Seen at Nishtar Hospital Multan on 18/11/2026. Guardian mobile [PHONE], CNIC [CNIC].",
+  "text_evidence": {
+    "entities": [["3", "CARDINAL"], ["4 days", "DATE"], ["Nishtar Hospital Multan", "FAC"],
+                 ["18/11/2026", "DATE"], ["CNIC", "ORG"], ["CNIC", "ORG"]],
+    "fields": {"date": ["18/11/2026"]},
+    "urgent_terms": ["fever", "breath", "cough"]
+  },
+  "decision": "REFER",
+  "reasons": ["image model: P(PNEUMONIA) = 0.99", "note mentions: fever, breath, cough"],
+  "disclaimer": "Decision support only; a qualified human decides."
+}
+```
