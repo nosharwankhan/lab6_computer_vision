@@ -279,6 +279,8 @@ Dataset: Paul Mooney, *Chest X-Ray Images (Pneumonia)*, Kaggle, CC BY 4.0.
 - Pipeline: image model + text evidence -> JSON record (example below)
 - Privacy: CNIC, phone, and email masked before logging
 - Note: Week 7 uses the Week 6 model retrained on Kaggle GPU (same seed and settings)
+- Limitations: the entity ruler only fixes names it has seen (held-out F1 0.6, not 1.0); spaCy labels the word "CNIC" as ORG in the example record (harmless here, because the decision uses the image probability and urgent terms); the OCR rules only fix O/0-style confusions, so the invoice CER stayed 0.040.
+   - Notebook: [Week 7 - Text and Multimodal.ipynb](Week%207%20-%20Text%20and%20Multimodal.ipynb)
 
 ```json
 {
